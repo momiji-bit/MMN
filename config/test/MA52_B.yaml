@@ -10,7 +10,7 @@ train_feeder_args:
   label_path: 'train'
   data_type: 'b'
   repeat: 1
-  p: 0.2
+  p: 0.0
   debug: False
   partition: True
 

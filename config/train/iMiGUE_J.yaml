@@ -10,7 +10,7 @@ train_feeder_args:
   split: 'train'
   data_type: 'j'
   repeat: 1
-  p: 0.2
+  p: 0.0
   debug: False
   partition: True
 

@@ -17,10 +17,12 @@
 <p align="center">
   <a href="https://arxiv.org/abs/2507.21977" target="_blank"><img src="https://img.shields.io/badge/arXiv-2507.21977-red?logo=arxiv"></a>
   <a href="https://huggingface.co/datasets/Geo2425/MMN" target="_blank"><img src="https://img.shields.io/badge/%F0%9F%A4%97%20Hugging%20Face-Dataset-orange"></a>
+    <a href="https://drive.google.com/drive/folders/15yubRV4BOQ18QqFNbB2w6ui30S_UtM7W?usp=sharing" target="_blank"><img src="https://img.shields.io/badge/Google%20Drive-Model-blue?logo=google-drive"></a>
   <a href="https://visitor-badge.laobi.icu/badge?page_id=momiji-bit.MMN&left_color=green&right_color=red" target="_blank"><img src="https://visitor-badge.laobi.icu/badge?page_id=momiji-bit.MMN&left_color=green&right_color=red"></a>
   <a href="https://img.shields.io/github/issues-raw/momiji-bit/MMN?color=%23FF9600" target="_blank"><img src="https://img.shields.io/github/issues-raw/momiji-bit/MMN?color=%23FF9600"></a>
   <a href="https://img.shields.io/github/stars/momiji-bit/MMN?style=flat&color=yellow" target="_blank"><img src="https://img.shields.io/github/stars/momiji-bit/MMN?style=flat&color=yellow"></a>
 </p>
+
 
 
 ![framework](assets/framework.png)
@@ -66,11 +68,9 @@ huggingface-cli download Geo2425/MMN --repo-type dataset --local-dir data
 
 ```
 
-**Pretrain Model**
+**Pretrain Model** 
 
-```
-Upcoming...
-```
+- Download Link: [here](https://drive.google.com/drive/folders/15yubRV4BOQ18QqFNbB2w6ui30S_UtM7W?usp=sharing)
 
 **Training** 
 
