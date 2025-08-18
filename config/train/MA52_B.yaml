@@ -1,0 +1,57 @@
+seed: 1
+num_worker: 0
+work_dir: ./work_dir/train/MA52_B
+
+
+phase: train
+
+feeder: feeders.feeder_ma52.Feeder
+train_feeder_args:
+  split: 'train'
+  data_type: 'b'
+  repeat: 1
+  p: 0.2
+  debug: False
+  partition: True
+
+test_feeder_args:
+  split: 'val'
+  data_type: 'b'
+  repeat: 1
+  partition: True
+
+# model
+model: model.MMN.MMN_
+model_args:
+  in_channels: 2
+  num_classes: 52
+  num_people: 1
+  num_points: 44
+  kernel_size: 3
+  num_heads: 4
+  drop: 0.0
+  head_drop: 0.1
+  drop_path: 0.3
+  mlp_ratio: 2.0
+  index_t: True
+
+#optim
+optimizer: AdamW
+weight_decay: 0.1
+lr_scheduler: cosine
+base_lr: 1e-3
+min_lr: 1e-5
+warmup_lr: 1e-7
+warmup_prefix: False
+warm_up_epoch: 20
+
+# training
+device: [0]
+batch_size: 64
+test_batch_size: 64
+num_epoch: 120
+start_epoch: 0
+nesterov: True
+grad_clip: False
+grad_max: 1.0
+loss_type: LSCE
