@@ -23,7 +23,7 @@ import yaml
 from tensorboardX import SummaryWriter
 from tqdm import tqdm
 
-from torchlight import DictAction
+from torchlight.util import DictAction
 
 # LR Scheduler
 from timm.scheduler.cosine_lr import CosineLRScheduler
