@@ -1,0 +1,75 @@
+seed: 1
+num_worker: 0
+work_dir: ./work_dir/finetune/MA52_J_3D
+
+phase: train
+
+# Checkpoint to finetune from
+weights: ./work_dir/train/MA52_J/runs-83-14525.pt
+ignore_weights: ['head']  # Reinitialize classifier head due to num_classes mismatch (52→42)
+
+# Feeder configuration for finetune dataset
+feeder: feeders.feeder_finetune.Feeder
+train_feeder_args:
+  split: 'train'
+  data_type: 'j'
+  repeat: 1
+  p: 0.2
+  debug: False
+  partition: False
+  data_path: './data/MA52/finetune_train.pkl'
+  label_path: './data/MA52/finetune_train_label.pkl'
+
+test_feeder_args:
+  split: 'test'  # or 'val'
+  data_type: 'j'
+  repeat: 1
+  partition: False
+  data_path: './data/MA52/finetune_test.pkl'
+  label_path: './data/MA52/finetune_test_label.pkl'
+
+# Model configuration (must match pretrained model)
+model: model.MMN.MMN_
+model_args:
+  in_channels: 3  # 3D coordinates (x, y, z)
+  num_classes: 52  # Labels remapped to 0-51 (42 unique values in range [0-51])
+  num_people: 1
+  num_points: 17  # H36M 17-joint skeleton
+  kernel_size: 3
+  num_heads: 4
+  drop: 0.0
+  head_drop: 0.1
+  drop_path: 0.3
+  mlp_ratio: 2.0
+  index_t: True
+
+# Optimizer configuration (LOWER learning rate for finetuning)
+optimizer: AdamW
+weight_decay: 0.05  # Reduced from 0.1
+lr_scheduler: cosine
+base_lr: 5e-5  # Much lower than 1e-3 for finetuning (20x lower)
+min_lr: 1e-6   # Lower minimum
+warmup_lr: 1e-7
+warmup_prefix: False
+warm_up_epoch: 5  # Shorter warmup for finetuning
+
+# Training configuration
+device: [0]
+batch_size: 32  # Can be adjusted based on GPU memory
+test_batch_size: 32
+num_epoch: 60  # Fewer epochs for finetuning (half of original 120)
+start_epoch: 0
+nesterov: True
+grad_clip: False
+grad_max: 1.0
+loss_type: LSCE  # Label Smoothing Cross Entropy
+
+# Additional notes:
+# - weights: Path to your pretrained checkpoint (e.g., runs-120-21000.pt)
+# - ignore_weights: 
+#     [] = Load all weights (recommended if classes are compatible)
+#     ['head'] = Reinitialize only the classifier head (if num_classes changed significantly)
+# - base_lr: Lower learning rate is crucial for finetuning to avoid catastrophic forgetting
+# - num_epoch: Usually 50-100 epochs is enough for finetuning
+# - batch_size: Adjust based on your GPU memory
+
