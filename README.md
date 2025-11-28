@@ -58,7 +58,7 @@ pip install -e ./torchpack
 
 ## 🏋️‍♂️ Training & Testing
 
-**Dataset (MA52 & iMiGUE)**
+**Dataset (MA-52 & iMiGUE)**
 
 ```bash
 pip install -U huggingface_hub
@@ -88,13 +88,19 @@ python main.py --config ./config/train/iMiGUE_B.yaml
 
 ```bash
 # Micro-Action 52 Dataset
-python main.py --config ./config/test/MA52_J.yaml --weights ./path_to_trained_model.pt
-python main.py --config ./config/test/MA52_B.yaml --weights ./path_to_trained_model.pt
+python test.py --config ./config/test/MA52_J.yaml --weights ./path_to_trained_model.pt
+python test.py --config ./config/test/MA52_B.yaml --weights ./path_to_trained_model.pt
+python test.py --merge ./work_dir/test/MA52_J ./work_dir/test/MA52_B --work-dir ./work_dir/test/MA52_2s
 # iMiGUE Dataset
-python main.py --config ./config/test/iMiGUE_J.yaml --weights ./path_to_trained_model.pt
-python main.py --config ./config/test/iMiGUE_B.yaml --weights ./path_to_trained_model.pt
+python test.py --config ./config/test/iMiGUE_J.yaml --weights ./path_to_trained_model.pt
+python test.py --config ./config/test/iMiGUE_B.yaml --weights ./path_to_trained_model.pt
+python test.py --merge ./work_dir/test/iMiGUE_J ./work_dir/test/iMiGUE_B --work-dir ./work_dir/test/iMiGUE_2s
 
 ```
+
+- **MA-52**: Please submit your test prediction files to the Codabench evaluation server competition page: [here](https://www.codabench.org/competitions/9066/)
+
+- **iMiGUE**: Please visit the official MiGA 2025 Challenge website for the latest competition details, timeline, and resources: [here](https://cv-ac.github.io/MiGA2025/).
 
 ## 🙏 Reference
 

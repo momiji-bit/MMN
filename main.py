@@ -90,12 +90,6 @@ def get_parser():
     # parser.add_argument('--config', default='./config/train/MA52_B.yaml', help='path to the configuration f_Lineare')
     # parser.add_argument('--config', default='./config/train/iMiGUE_J.yaml', help='path to the configuration f_Lineare')
     # parser.add_argument('--config', default='./config/train/iMiGUE_B.yaml', help='path to the configuration f_Lineare')
-
-    # parser.add_argument('--config', default='./config/test/MA52_J.yaml', help='path to the configuration f_Lineare')
-    # parser.add_argument('--config', default='./config/test/MA52_B.yaml', help='path to the configuration f_Lineare')
-    # parser.add_argument('--config', default='./config/test/iMiGUE_J.yaml', help='path to the configuration f_Lineare')
-    # parser.add_argument('--config', default='./config/test/iMiGUE_B.yaml', help='path to the configuration f_Lineare')
-
     # ===config==========================================================================================================================================
     # processor
     parser.add_argument('--phase', default='train', help='must be train or test')

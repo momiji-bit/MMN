@@ -6,16 +6,9 @@ phase: test
 weights: ./path_to_trained_model.pt
 
 feeder: feeders.feeder_imigue.Feeder
-train_feeder_args:
-  split: 'train'
-  data_type: 'j'
-  repeat: 1
-  p: 0.0
-  debug: False
-  partition: True
 
 test_feeder_args:
-  split: 'val'
+  split: 'test'
   data_type: 'j'
   repeat: 1
   partition: True
@@ -35,23 +28,7 @@ model_args:
   mlp_ratio: 2.0
   index_t: True
 
-#optim
-optimizer: AdamW
-weight_decay: 0.1
-lr_scheduler: cosine
-base_lr: 1e-3
-min_lr: 1e-5
-warmup_lr: 1e-7
-warmup_prefix: False
-warm_up_epoch: 20
-
 # training
 device: [0]
-batch_size: 64
 test_batch_size: 64
-num_epoch: 120
-start_epoch: 0
-nesterov: True
-grad_clip: False
-grad_max: 1.0
 loss_type: LSCE
