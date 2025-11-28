@@ -148,8 +148,8 @@ def merge_predictions(j_dir, b_dir, output_dir):
             print(f"Error: Score shapes mismatch! J: {j_scores.shape}, B: {b_scores.shape}")
             return
 
-        # Merge by adding scores ("叠加")
-        merged_scores = j_scores + b_scores
+        # Merge by adding scores
+        merged_scores = j_scores * 0.5 + b_scores * 0.5
 
         print(f"Scores loaded and merged. Total samples: {merged_scores.shape[0]}")
 
