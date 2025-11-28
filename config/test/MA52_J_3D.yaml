@@ -1,0 +1,32 @@
+seed: 1
+num_worker: 0
+work_dir: ./work_dir/test/MA52_J_3D
+
+phase: test
+
+feeder: feeders.feeder_ma52.Feeder
+test_feeder_args:
+  split: 'test'
+  data_type: 'j'
+  repeat: 1
+  partition: False  # Changed: Disabled partition for 17 joints
+
+# model
+model: model.MMN.MMN_
+model_args:
+  in_channels: 3  # Changed: 2 → 3 for (x, y, z) coordinates
+  num_classes: 52
+  num_people: 1
+  num_points: 17  # Changed: 44 → 17 for 17 joints instead of 44
+  kernel_size: 3
+  num_heads: 4
+  drop: 0.0
+  head_drop: 0.1
+  drop_path: 0.3
+  mlp_ratio: 2.0
+  index_t: True
+
+# testing
+device: [0]
+test_batch_size: 64
+
